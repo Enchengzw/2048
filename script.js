@@ -176,15 +176,16 @@ function restartGame() {
 }
 
 function canMove() {
-    for (let r = 0; r < rows - 1; r++) {
-        for (let c = 0; c < columns - 1; c++) {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
             if (board[r][c] === 0) {
                 return true;
             }
-            if (board[r][c] === board[r][c+1]) {
+
+            if (c < columns && board[r][c] === board[r][c+1]) {
                 return true;
             }
-            if (board[r][c] === board[r+1][c]) {
+            if (r < rows && board[r][c] === board[r+1][c]) {
                 return true;
             }
         }
