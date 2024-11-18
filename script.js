@@ -36,6 +36,13 @@ function updateTile(tile, num) {
         tile.innerText = num;
         if (num <= 2048)
             tile.classList.add("x" + num.toString());
+        if (num == 2048) {
+            setTimeout(() => {
+                alert("You win!");
+                restartGame();
+            }, 100);
+        }
+
     }
 }
 
@@ -51,7 +58,7 @@ function hasEmpty() {
 
 function setTile() {
     if (!hasEmpty()) {
-        return;
+        return ;
     }
 
     let found = false
@@ -156,20 +163,7 @@ function moveDown() {
     }
 }
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "ArrowUp") {
-        moveUp();
-    } else if (event.key === "ArrowDown") {
-        moveDown();
-    } else if (event.key === "ArrowLeft") {
-        moveLeft();
-    } else if (event.key === "ArrowRight") {
-        moveRight();
-    }
-    setTile();
-});
-
-restart.addEventListener("click", () => {
+function restartGame() {
     let grid = document.querySelector(".grid-container");
 
     while (grid.firstChild) {
@@ -179,4 +173,47 @@ restart.addEventListener("click", () => {
     score = 0;
     document.getElementById("score").innerText = score;
     setGame();
+}
+
+function canMove() {
+    for (let r = 0; r < rows - 1; r++) {
+        for (let c = 0; c < columns - 1; c++) {
+            if (board[r][c] === 0) {
+                return true;
+            }
+            if (board[r][c] === board[r][c+1]) {
+                return true;
+            }
+            if (board[r][c] === board[r+1][c]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowUp") {
+        moveUp();
+        setTile();
+    } else if (event.key === "ArrowDown") {
+        moveDown();
+        setTile();
+    } else if (event.key === "ArrowLeft") {
+        moveLeft();
+        setTile();
+    } else if (event.key === "ArrowRight") {
+        moveRight();
+        setTile();
+    }
+    if (!hasEmpty()) {
+        if (!canMove()) {
+            alert("Game over!");
+            restartGame();
+        }
+    }
+});
+
+restart.addEventListener("click", () => {
+    restartGame();
 })

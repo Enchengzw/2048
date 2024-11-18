@@ -13,6 +13,7 @@ html, body {
 	font-family: Arial, sans-serif;
     background-color: beige;
 
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +40,7 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 400px;
+    width: 500px;
 }
 
 span {
@@ -55,13 +56,22 @@ span {
 }
 
 #restart {
-    width: 150px;
+    width: 175px;
     height: 50px;
     font: 30px sans-serif;
-    font: color: white;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
     border-style: none;
-    background-color: rgb(119, 110, 101);
+    background-color: rgb(177, 164, 151);
+}
+
+#restart:hover {
+    transform: scale(1.05);
+    background-color: rgb(145, 132, 118);
 }
 
 .grid-container {
@@ -92,6 +102,38 @@ span {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+dialog {
+    width: 300px;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgb(117, 100, 82);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+
+    /* Centering */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play_again {
+    font-size: 20px;
+    background-color: rgb(185, 142, 98);
+}
+
+.play_again:hover {
+    transform: scale(1.05);
+    background-color: rgb(145, 132, 118);
 }
 
 .x2 {
